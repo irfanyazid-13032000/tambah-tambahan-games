@@ -1,0 +1,64 @@
+.tampah {
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* text-align: center; */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  /* width: 200px; */
+  /* margin: auto; */
+}
+
+.papannilai{
+  border-radius: 20px;
+  margin:auto;
+  height: 20vw;
+  width: 50vw;
+  background-color: #1A4870;
+  color: black;
+  text-align: center;
+}
+
+.papannilai p{
+  padding-top: 5vw;
+  font-size: 40px;
+}
+
+.papan_soal {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.papan_jawaban input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #F9DBBA;
+}
+
+input{
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  caret-color: transparent; /* Menghilangkan garis berkedip (cursor) */
+  background-color: transparent;
+}
+
+button{
+  color: #000000;
+  margin-top: 30px;
+  background-color: #5B99C2;
+  width: 50vw;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Menghilangkan panah pada input number */
+    margin: 0; /* Menghilangkan margin */
+}
+
+p{
+  font-weight: bolder;
+}
