@@ -1,5 +1,6 @@
 import '../assets/css/card.css'
 import Score from "./Score";
+import Email from "./Email"
 import { useState,useEffect,useRef } from 'react';
 
 export default function Card() {
@@ -16,6 +17,7 @@ const inputJawaban = useRef(null);
 const [jam,setJam] = useState(0)
 const [menit,setMenit] = useState(0)
 const [detik,setDetik] = useState(0)
+const [sudahInputEmail, setSudahInputEmail] = useState(false)
 
 
 
@@ -76,12 +78,21 @@ const [detik,setDetik] = useState(0)
       return; 
     }
     
-    const intervalId = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
+    if (sudahInputEmail && timeLeft > 0) {
+      const intervalId = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+      
+    }
 
-    return () => clearInterval(intervalId);
-  }, [timeLeft,score]);
+    if (!sudahInputEmail) {
+      setTimeLeft(time); // Reset timer ketika email belum dimasukkan
+    }
+
+
+  }, [timeLeft,score,sudahInputEmail]);
 
 
   useEffect(() => {
@@ -93,13 +104,14 @@ const [detik,setDetik] = useState(0)
 
   return (
     <div>
+      <Email setSudahInputEmail={setSudahInputEmail} sudahInputEmail={sudahInputEmail}/>
       <Score timeLeft={timeLeft} score={score} historyScore={historyScore}/>
-    <div className="tampah"  style={{ display: timeLeft <= 0 ? "none" : "block" }}>
+    <div className="tampah"  style={{ display: timeLeft <= 0 || sudahInputEmail == false ? "none" : "block" }}>
       <table style={{'border':'black'}}>
         <thead>
           <tr>
             <td><p>score : {score}</p></td>
-            <td style={{'padding-left':'105px','text-align':'right'}}><p>{jam}:{menit}:{detik}</p></td>
+            <td style={{'paddingLeft':'105px','textAlign':'right'}}><p>{jam}:{menit}:{detik}</p></td>
           </tr>
         </thead>
       </table>
