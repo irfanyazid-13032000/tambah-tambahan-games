@@ -84,7 +84,7 @@ const [emailUser, setEmailUser] = useState('')
       setHistoryScore((prevHistoryScore)=>[...prevHistoryScore,score])
       // jika score saat ini lebih besar dari score dari database, maka insert ke database rekor baru yang terpecahkan tersebut
       if (score > highestScoreFromDB) {
-        axios.post('http://127.0.0.1:8000/api/insertemailtambahtambahan',
+        axios.post('https://otwjepang.my.id/api/insertemailtambahtambahan',
           {
             email:emailUser,
             score:score

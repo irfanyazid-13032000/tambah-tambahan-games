@@ -10,7 +10,7 @@ export default function Email({setSudahInputEmail,sudahInputEmail,setHighestScor
 
   const enter = (e) => {
     if (e.key === "Enter") {
-      axios.post('http://127.0.0.1:8000/api/insertemailtambahtambahan',
+      axios.post('https://otwjepang.my.id/api/insertemailtambahtambahan',
         {
           email:emailUser,
           score:0
