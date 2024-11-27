@@ -21,6 +21,7 @@ const [detik,setDetik] = useState(0)
 const [sudahInputEmail, setSudahInputEmail] = useState(false)
 const [highestScoreFromDB, setHighestScoreFromDB] = useState(0)
 const [emailUser, setEmailUser] = useState('')
+const [sumbangan, setSumbangan] = useState(false)
 
 
 
@@ -125,6 +126,7 @@ const [emailUser, setEmailUser] = useState('')
 
 
   return (
+    <>
     <div>
       <Email setSudahInputEmail={setSudahInputEmail} sudahInputEmail={sudahInputEmail} highestScoreFromDB={highestScoreFromDB} setHighestScoreFromDB={setHighestScoreFromDB} mainLagi={mainLagi} setEmailUser={setEmailUser} emailUser={emailUser}/>
       <Score timeLeft={timeLeft} score={score} historyScore={historyScore} highestScoreFromDB={highestScoreFromDB}/>
@@ -149,5 +151,12 @@ const [emailUser, setEmailUser] = useState('')
     </div>
     <button style={{ display: timeLeft <= 0 ? "block" : "none" }} onClick={mainLagi}>Coba Lagi</button>
     </div>
+    
+    <div id="papanNgemis">
+      <p className='mengajakMenyumbang'>seru kan?  Mau dong nyumbang?</p>
+      <button className='sumbangButton' onClick={()=>{setSumbangan(true)}}>Sumbanglah Diriku ini Plisss😭</button>
+    </div>
+    </>
+    
   )
 };
