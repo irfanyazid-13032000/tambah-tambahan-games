@@ -1,0 +1,70 @@
+.papanSumbangan {
+  background-color: #605678;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: bold;
+  width: 365px;
+  text-align: center;
+}
+
+.ucapan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; /* Atur jarak antar elemen di dalam .ucapan */
+}
+
+.ajakan {
+  font-size: 30px;
+  padding: 10px 20px;
+  background-color: #A594F9;
+  color: black;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.saweria {
+  background-color: #563A9C;
+  color: #FFF7D1;
+  padding: 5px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.none {
+  display: none;
+}
+
+.x {
+  margin: 0;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  background-color: #F0A8D0;
+  padding: 7px 20px;
+  border-radius: 20px;
+}
+
+.rekening{
+  /* background-color: #8B5DFF; */
+  color: white;
+  font-size: 25px;
+}
+
+/* Mengatur margin untuk elemen <p> di dalam .ucapan */
+.ucapan p {
+  margin: 2px 0; /* Mengatur margin vertikal kecil antar paragraf */
+}
+
+
+.copy-icon {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 8px;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.copy-icon:hover {
+  color: #000;
+}

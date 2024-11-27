@@ -1,8 +1,8 @@
 
-export default function Score({timeLeft,score,historyScore,highestScoreFromDB}){
+export default function Score({timeLeft,score,historyScore,highestScoreFromDB,sumbangan}){
   return(
     <>
-      <div className="papannilai" style={{ display: timeLeft > 0 ? "none" : "block" }}>
+      <div className="papannilai" style={{ display: timeLeft > 0 || sumbangan == true ? "none" : "block" }}>
           <p>Your Score :</p>
           <p>{score}</p>
           <p>Highest score : {Math.max(...historyScore,highestScoreFromDB)}</p>

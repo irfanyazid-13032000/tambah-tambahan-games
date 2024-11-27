@@ -3,9 +3,10 @@ import Score from "./Score";
 import Email from "./Email"
 import axios from "axios"
 import { useState,useEffect,useRef } from 'react';
+import  Sumbangan  from "./Sumbangan";
 
 export default function Card() {
-const time = 60
+const time = 3
 const [historyScore,setHistoryScore] = useState([])
 const [angka1,setAngka1] = useState(0)
 const [angka2,setAngka2] = useState(0)
@@ -22,6 +23,7 @@ const [sudahInputEmail, setSudahInputEmail] = useState(false)
 const [highestScoreFromDB, setHighestScoreFromDB] = useState(0)
 const [emailUser, setEmailUser] = useState('')
 const [sumbangan, setSumbangan] = useState(false)
+
 
 
 
@@ -128,9 +130,10 @@ const [sumbangan, setSumbangan] = useState(false)
   return (
     <>
     <div>
+      <Sumbangan sumbangan={sumbangan} setSumbangan={setSumbangan}/>
       <Email setSudahInputEmail={setSudahInputEmail} sudahInputEmail={sudahInputEmail} highestScoreFromDB={highestScoreFromDB} setHighestScoreFromDB={setHighestScoreFromDB} mainLagi={mainLagi} setEmailUser={setEmailUser} emailUser={emailUser}/>
-      <Score timeLeft={timeLeft} score={score} historyScore={historyScore} highestScoreFromDB={highestScoreFromDB}/>
-    <div className="tampah"  style={{ display: timeLeft <= 0 || sudahInputEmail == false ? "none" : "block" }}>
+      <Score timeLeft={timeLeft} score={score} historyScore={historyScore} highestScoreFromDB={highestScoreFromDB} sumbangan={sumbangan}/>
+    <div className="tampah"  style={{ display: timeLeft <= 0 || sudahInputEmail == false || sumbangan == true ? "none" : "block" }}>
       <table style={{'border':'black'}}>
         <thead>
           <tr>
@@ -149,10 +152,15 @@ const [sumbangan, setSumbangan] = useState(false)
       </div>
 
     </div>
+
+    <div style={{display:sumbangan == true ? "none" : "block"}}>
     <button style={{ display: timeLeft <= 0 ? "block" : "none" }} onClick={mainLagi}>Coba Lagi</button>
     </div>
+
+
+    </div>
     
-    <div id="papanNgemis">
+    <div id="papanNgemis" style={{display:historyScore.length < 2 || sumbangan ==  true ? "none":"block"}}>
       <p className='mengajakMenyumbang'>seru kan?  Mau dong nyumbang?</p>
       <button className='sumbangButton' onClick={()=>{setSumbangan(true)}}>Sumbanglah Diriku ini Plisss😭</button>
     </div>
