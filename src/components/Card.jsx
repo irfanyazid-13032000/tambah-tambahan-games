@@ -1,10 +1,11 @@
 import '../assets/css/card.css'
 import Score from "./Score";
 import Email from "./Email"
+import axios from "axios"
 import { useState,useEffect,useRef } from 'react';
 
 export default function Card() {
-const time = 60
+const time = 10
 const [historyScore,setHistoryScore] = useState([])
 const [angka1,setAngka1] = useState(0)
 const [angka2,setAngka2] = useState(0)
@@ -18,6 +19,8 @@ const [jam,setJam] = useState(0)
 const [menit,setMenit] = useState(0)
 const [detik,setDetik] = useState(0)
 const [sudahInputEmail, setSudahInputEmail] = useState(false)
+const [highestScoreFromDB, setHighestScoreFromDB] = useState(0)
+const [emailUser, setEmailUser] = useState('')
 
 
 
@@ -55,6 +58,8 @@ const [sudahInputEmail, setSudahInputEmail] = useState(false)
     setKunciJawaban(soal1+soal2)
   }
 
+  
+
   function getRandomNumber() {
     return Math.floor(Math.random() * 10) + 1;
   }
@@ -73,8 +78,25 @@ const [sudahInputEmail, setSudahInputEmail] = useState(false)
 
 
   useEffect(() => {
+    // jika waktu habis
     if (timeLeft <= 0) {
+      // masukkan score ke history score
       setHistoryScore((prevHistoryScore)=>[...prevHistoryScore,score])
+      // jika score saat ini lebih besar dari score dari database, maka insert ke database rekor baru yang terpecahkan tersebut
+      if (score > highestScoreFromDB) {
+        axios.post('http://127.0.0.1:8000/api/insertemailtambahtambahan',
+          {
+            email:emailUser,
+            score:score
+          }
+        )
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }
       return; 
     }
     
@@ -104,8 +126,8 @@ const [sudahInputEmail, setSudahInputEmail] = useState(false)
 
   return (
     <div>
-      <Email setSudahInputEmail={setSudahInputEmail} sudahInputEmail={sudahInputEmail}/>
-      <Score timeLeft={timeLeft} score={score} historyScore={historyScore}/>
+      <Email setSudahInputEmail={setSudahInputEmail} sudahInputEmail={sudahInputEmail} highestScoreFromDB={highestScoreFromDB} setHighestScoreFromDB={setHighestScoreFromDB} mainLagi={mainLagi} setEmailUser={setEmailUser} emailUser={emailUser}/>
+      <Score timeLeft={timeLeft} score={score} historyScore={historyScore} highestScoreFromDB={highestScoreFromDB}/>
     <div className="tampah"  style={{ display: timeLeft <= 0 || sudahInputEmail == false ? "none" : "block" }}>
       <table style={{'border':'black'}}>
         <thead>
