@@ -5,7 +5,7 @@ import axios from "axios"
 import { useState,useEffect,useRef } from 'react';
 
 export default function Card() {
-const time = 10
+const time = 60
 const [historyScore,setHistoryScore] = useState([])
 const [angka1,setAngka1] = useState(0)
 const [angka2,setAngka2] = useState(0)
